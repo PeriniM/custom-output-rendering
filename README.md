@@ -2,9 +2,19 @@
 
 This project demonstrates how to create custom output renderers for LangSmith annotation queues and datasets. It provides a React-based UI that receives data from LangSmith via the `postMessage` API and displays it in a customizable format.
 
+## Screenshots
+
+### Annotation Queue View
+
 ![Annotation Queue View](./assets/annotation-queue.png)
 
 The renderer displays conversation turns in a clean, chat-like interface with model information, token usage, and metadata for easy annotation.
+
+### Dataset View
+
+![Dataset View](./assets/dataset.png)
+
+The dataset endpoint supports both regular outputs and reference outputs, displaying them in the same conversation format for easy comparison.
 
 ## Features
 
@@ -57,6 +67,15 @@ ngrok http 8000
 
 3. Copy the public URL provided by ngrok (e.g., `https://abc123.ngrok-free.app`)
 
+## Endpoints
+
+This project provides two separate endpoints for different use cases:
+
+- **`/annotation-queue`** - For annotation queues in LangSmith
+- **`/dataset`** - For datasets (supports both output and reference outputs)
+
+The root path (`/`) displays a selector page to choose between endpoints.
+
 ## Configuration in LangSmith
 
 ### For Annotation Queues
@@ -65,8 +84,13 @@ ngrok http 8000
 2. Click on an existing annotation queue or create a new one
 3. In the annotation queue settings pane, scroll to the **Custom Output Rendering** section
 4. Toggle **Enable custom output rendering**
-5. Enter your ngrok URL (e.g., `https://abc123.ngrok-free.app`)
+5. Enter your ngrok URL with the `/annotation-queue` path:
+   ```
+   https://abc123.ngrok-free.app/annotation-queue
+   ```
 6. Click **Save** or **Create**
+
+**Example**: If your ngrok URL is `https://abc123.ngrok-free.app`, use `https://abc123.ngrok-free.app/annotation-queue`
 
 ### For Datasets
 
@@ -74,8 +98,15 @@ ngrok http 8000
 2. Click **⋮** (three-dot menu) in the top right corner
 3. Select **Custom Output Rendering**
 4. Toggle **Enable custom output rendering**
-5. Enter your ngrok URL
+5. Enter your ngrok URL with the `/dataset` path:
+   ```
+   https://abc123.ngrok-free.app/dataset
+   ```
 6. Click **Save**
+
+**Example**: If your ngrok URL is `https://abc123.ngrok-free.app`, use `https://abc123.ngrok-free.app/dataset`
+
+**Note**: The dataset endpoint supports both `"output"` and `"reference"` message types. Reference outputs are clearly labeled in the UI.
 
 ## Understanding the Payload
 
@@ -112,13 +143,19 @@ LangSmith uses an exponential backoff retry mechanism to ensure your page receiv
 ```
 .
 ├── pages/
-│   ├── _app.js          # Next.js app wrapper
-│   └── index.js         # Main page component
+│   ├── _app.js              # Next.js app wrapper
+│   ├── index.js             # Landing page with endpoint selector
+│   ├── annotation-queue.js  # Annotation queue endpoint
+│   └── dataset.js           # Dataset endpoint
+├── components/
+│   └── ConversationTurn.js  # Reusable conversation turn component
+├── utils/
+│   └── conversation.js      # Conversation parsing utilities
 ├── styles/
-│   ├── globals.css       # Global styles
-│   └── App.module.css    # Component styles (CSS Modules)
-├── next.config.js        # Next.js configuration
-└── package.json          # Dependencies
+│   ├── globals.css           # Global styles
+│   └── App.module.css       # Component styles (CSS Modules)
+├── next.config.js           # Next.js configuration
+└── package.json             # Dependencies
 ```
 
 ### Building for Production
@@ -144,6 +181,30 @@ The renderer automatically parses LangSmith messages and displays them as conver
 - **Raw payload toggle** to view the complete JSON structure
 
 This makes it easy for reviewers to understand the conversation flow and annotate threads effectively.
+
+## Usage Examples
+
+### Annotation Queue Example
+
+When configuring an annotation queue, use:
+```
+https://your-ngrok-url.ngrok-free.app/annotation-queue
+```
+
+This endpoint is optimized for annotation workflows and displays conversation turns with all relevant metadata for reviewers.
+
+### Dataset Example
+
+When configuring a dataset, use:
+```
+https://your-ngrok-url.ngrok-free.app/dataset
+```
+
+This endpoint supports both:
+- **Output messages**: Actual run outputs from your application
+- **Reference messages**: Expected/reference outputs for comparison
+
+The UI clearly indicates when viewing a reference output vs. an actual output.
 
 ## License
 
