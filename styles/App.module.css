@@ -1,0 +1,283 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+.appHeader {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.appHeader h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 0.75rem;
+}
+
+.messageCount {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.appMain {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+.emptyState p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: #999;
+  font-style: italic;
+}
+
+.conversationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.turn {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.turn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.turnHeader {
+  background: #f8f9fa;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.turnNumber {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 0.9rem;
+}
+
+.rawToggle {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: 500;
+}
+
+.rawToggle:hover {
+  background: #5568d3;
+}
+
+.rawPayload {
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.turnContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.messageBubble {
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  max-width: 85%;
+  word-wrap: break-word;
+}
+
+.humanMessage {
+  background: #e3f2fd;
+  align-self: flex-start;
+  border-top-left-radius: 4px;
+}
+
+.aiMessage {
+  background: #f1f8e9;
+  align-self: flex-end;
+  border-top-right-radius: 4px;
+}
+
+.messageLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.humanMessage .messageLabel {
+  color: #1976d2;
+}
+
+.aiMessage .messageLabel {
+  color: #558b2f;
+}
+
+.modelInfo {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.modelName {
+  color: #667eea;
+  font-weight: 500;
+}
+
+.modelProvider {
+  color: #888;
+  font-size: 0.9em;
+}
+
+.messageText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-wrap;
+}
+
+.messageMetadata {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tokenUsage {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.tokenLabel {
+  font-weight: 600;
+  color: #555;
+}
+
+.tokenValue {
+  color: #667eea;
+  font-weight: 500;
+}
+
+.cacheInfo {
+  color: #888;
+  font-size: 0.9em;
+}
+
+.stopReason {
+  color: #666;
+}
+
+.stopValue {
+  color: #667eea;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.toolCalls {
+  color: #f57c00;
+  font-weight: 500;
+}
+
+.jsonDisplay {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  max-height: 500px;
+  overflow-y: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}
+
+.jsonDisplay::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.jsonDisplay::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 4px;
+}
+
+.jsonDisplay::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.jsonDisplay::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .appMain {
+    padding: 1rem;
+  }
+  
+  .messageBubble {
+    max-width: 95%;
+  }
+  
+  .turnHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .rawToggle {
+    width: 100%;
+  }
+}
