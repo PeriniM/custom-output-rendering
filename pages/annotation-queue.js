@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import styles from '../styles/App.module.css'
 import { parseConversation } from '../utils/conversation'
 import ConversationTurn from '../components/ConversationTurn'
+import PDFViewer from '../components/PDFViewer'
 
 export default function AnnotationQueue() {
   const [messages, setMessages] = useState([])
   const [messageCount, setMessageCount] = useState(0)
   const [latestMessage, setLatestMessage] = useState(null)
+  const [activeTab, setActiveTab] = useState('thread')
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -56,23 +58,46 @@ export default function AnnotationQueue() {
       </header>
 
       <main className={styles.appMain}>
-        {conversationTurns.length === 0 ? (
-          <div className={styles.emptyState}>
-            <p>Waiting for messages from LangSmith...</p>
-            <p className={styles.hint}>
-              Configure this URL in your annotation queue settings.
-            </p>
-          </div>
+        {/* Tabs */}
+        <div className={styles.tabsContainer}>
+          <button
+            className={`${styles.tab} ${activeTab === 'thread' ? styles.tabActive : ''}`}
+            onClick={() => setActiveTab('thread')}
+          >
+            Thread
+          </button>
+          <button
+            className={`${styles.tab} ${activeTab === 'guidelines' ? styles.tabActive : ''}`}
+            onClick={() => setActiveTab('guidelines')}
+          >
+            Guidelines
+          </button>
+        </div>
+
+        {/* Tab Content */}
+        {activeTab === 'thread' ? (
+          conversationTurns.length === 0 ? (
+            <div className={styles.emptyState}>
+              <p>Waiting for messages from LangSmith...</p>
+              <p className={styles.hint}>
+                Configure this URL in your annotation queue settings.
+              </p>
+            </div>
+          ) : (
+            <div className={styles.conversationContainer}>
+              {conversationTurns.map((turn, index) => (
+                <ConversationTurn
+                  key={index}
+                  turn={turn}
+                  turnNumber={turn.turnNumber}
+                  fullPayload={latestMessage}
+                />
+              ))}
+            </div>
+          )
         ) : (
-          <div className={styles.conversationContainer}>
-            {conversationTurns.map((turn, index) => (
-              <ConversationTurn
-                key={index}
-                turn={turn}
-                turnNumber={turn.turnNumber}
-                fullPayload={latestMessage}
-              />
-            ))}
+          <div className={styles.pdfContainer}>
+            <PDFViewer pdfPath="/customer-support-guidelines.pdf" />
           </div>
         )}
       </main>

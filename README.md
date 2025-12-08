@@ -2,7 +2,7 @@
 
 This project demonstrates how to create custom output renderers for LangSmith annotation queues and datasets. It provides a React-based UI that receives data from LangSmith via the `postMessage` API and displays it in a customizable format.
 
-## Screenshots
+## Showcase Examples
 
 ### Annotation Queue View
 
@@ -10,11 +10,23 @@ This project demonstrates how to create custom output renderers for LangSmith an
 
 The renderer displays conversation turns in a clean, chat-like interface with model information, token usage, and metadata for easy annotation.
 
+### Annotation Queue with Guidelines
+
+![Annotation Queue with Guidelines](./assets/aq-guidelines.png)
+
+The annotation queue endpoint includes a **Guidelines** tab that displays external resources (such as PDF documents) alongside the conversation thread. This allows reviewers to reference documentation, guidelines, or other contextual materials while annotating traces. The guidelines are displayed using a PDF viewer that works seamlessly even when the renderer is loaded in an iframe.
+
 ### Dataset View
 
 ![Dataset View](./assets/dataset.png)
 
 The dataset endpoint supports both regular outputs and reference outputs, displaying them in the same conversation format for easy comparison.
+
+### Medical Records View
+
+![Medical Records View](./assets/medical-record.png)
+
+The medical records endpoint demonstrates domain-specific formatting, displaying structured medical data including patient information, vital signs, diagnoses, medications, and clinical notes in a native medical record format.
 
 ## Features
 
@@ -69,12 +81,21 @@ ngrok http 8000
 
 ## Endpoints
 
-This project provides two separate endpoints for different use cases:
+This project provides multiple endpoints for different use cases:
 
 - **`/annotation-queue`** - For annotation queues in LangSmith
 - **`/dataset`** - For datasets (supports both output and reference outputs)
+- **`/medical`** - Domain-specific formatting for medical records
 
 The root path (`/`) displays a selector page to choose between endpoints.
+
+### Domain-Specific Formatting
+
+The custom renderer supports domain-specific formatting to display specialized data types in their native format:
+
+- **Medical Records** (`/medical`): Structured display of patient information, vital signs, diagnoses, medications, and clinical notes
+
+See the `examples/` directory for example datasets.
 
 ## Configuration in LangSmith
 
@@ -91,6 +112,8 @@ The root path (`/`) displays a selector page to choose between endpoints.
 6. Click **Save** or **Create**
 
 **Example**: If your ngrok URL is `https://abc123.ngrok-free.app`, use `https://abc123.ngrok-free.app/annotation-queue`
+
+**External Resources for Reviewers**: The annotation queue endpoint includes a tabbed interface with a **Guidelines** tab that displays external resources (PDFs, documentation, etc.) alongside the conversation thread. To add guidelines, place a PDF file in the `public/` directory (e.g., `public/customer-support-guidelines.pdf`) and it will be accessible via the Guidelines tab. This allows reviewers to reference important documentation, guidelines, or contextual materials while annotating traces without leaving the annotation interface.
 
 ### For Datasets
 
@@ -181,6 +204,31 @@ The renderer automatically parses LangSmith messages and displays them as conver
 - **Raw payload toggle** to view the complete JSON structure
 
 This makes it easy for reviewers to understand the conversation flow and annotate threads effectively.
+
+## Domain-Specific Examples
+
+### Medical Records
+
+The `/medical` endpoint demonstrates how to format medical records in a structured, readable format:
+
+- **Patient Information**: Name, age, ID, demographics
+- **Vital Signs**: Blood pressure, heart rate, temperature, etc.
+- **Diagnosis**: ICD codes and descriptions
+- **Medications**: Dosage, frequency, duration
+- **Clinical Notes**: Formatted clinical documentation
+
+Example datasets are available in CSV format:
+- `examples/medical-records-dataset.csv` - Ready to upload to LangSmith
+
+### Uploading CSV Datasets to LangSmith
+
+1. Navigate to **Datasets & Experiments** in LangSmith
+2. Click **Create Dataset** → **Upload CSV**
+3. Select the CSV file from the `examples/` directory
+4. Map columns:
+   - **Input columns**: `input_question` (or `input`)
+   - **Output columns**: `output` (for regular outputs) or `output_answer` (for reference outputs)
+5. Configure custom output rendering URL with the appropriate endpoint path
 
 ## Usage Examples
 

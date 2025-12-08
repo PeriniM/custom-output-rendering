@@ -374,6 +374,304 @@
   color: #333;
 }
 
+/* Medical Record Styles */
+.medicalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.medicalRecord {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.medicalHeader {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.medicalHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.medicalDate {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.medicalSection {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.medicalSection:last-child {
+  border-bottom: none;
+}
+
+.medicalSectionTitle {
+  font-size: 1.1rem;
+  color: #1976D2;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.medicalGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.medicalField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.medicalLabel {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.medicalValue {
+  font-size: 1rem;
+  color: #333;
+}
+
+.medicalList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.medicalListItem {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-left: 3px solid #2196F3;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.medicalCode {
+  background: #e3f2fd;
+  color: #1976D2;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.medicationList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.medicationItem {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-left: 3px solid #4CAF50;
+  border-radius: 4px;
+}
+
+.medicationName {
+  font-weight: 600;
+  color: #2E7D32;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.medicationDetails {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  flex-wrap: wrap;
+}
+
+.clinicalNotes {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+
+/* Tabs */
+.tabsContainer {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+  top: 2px;
+}
+
+.tab:hover {
+  color: #667eea;
+  background: #f8f9fa;
+}
+
+.tabActive {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  font-weight: 600;
+}
+
+.tabActive:hover {
+  background: none;
+}
+
+/* PDF Viewer */
+.pdfContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.pdfViewerContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pdfControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.pdfButton {
+  padding: 0.5rem 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pdfButton:hover:not(:disabled) {
+  background: #5568d3;
+}
+
+.pdfButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.pdfPageInfo {
+  font-weight: 500;
+  color: #333;
+  min-width: 120px;
+  text-align: center;
+}
+
+.pdfLinkButton {
+  padding: 0.5rem 1rem;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.pdfLinkButton:hover {
+  background: #218838;
+  text-decoration: none;
+}
+
+.pdfDocumentWrapper {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  background: #e5e5e5;
+  padding: 1rem;
+  border-radius: 8px;
+  min-height: 600px;
+}
+
+.pdfDocument {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdfPage {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+  background: white;
+}
+
+.pdfLoading {
+  padding: 3rem;
+  text-align: center;
+  color: #666;
+}
+
+.pdfError {
+  padding: 3rem;
+  text-align: center;
+  color: #666;
+}
+
+.pdfLink {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #667eea;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.pdfLink:hover {
+  background: #5568d3;
+  text-decoration: none;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .appMain {
@@ -397,5 +695,29 @@
   .endpointSelector {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  
+  .tabsContainer {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .tab {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+    border-left: 3px solid transparent;
+    top: 0;
+    padding: 0.75rem 1rem;
+  }
+  
+  .tabActive {
+    border-left-color: #667eea;
+    border-bottom-color: #e9ecef;
+  }
+  
+  .pdfContainer {
+    height: calc(100vh - 250px);
+    min-height: 400px;
   }
 }

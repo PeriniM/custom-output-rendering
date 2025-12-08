@@ -36,6 +36,19 @@ export default function Home() {
               <p>Supports both output and reference outputs</p>
             </div>
           </div>
+
+          <div className={styles.endpointCard}>
+            <h2>Medical Records</h2>
+            <p>Domain-specific formatting for medical records</p>
+            <Link href="/medical" className={styles.endpointLink}>
+              <span className={styles.endpointPath}>/medical</span>
+              <span className={styles.endpointArrow}>→</span>
+            </Link>
+            <div className={styles.endpointInfo}>
+              <p>Example: Medical record formatting</p>
+              <p>Structured display of patient data, diagnoses, medications</p>
+            </div>
+          </div>
         </div>
       </main>
     </div>
